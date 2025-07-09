@@ -1,0 +1,366 @@
+		/* Base variables for colors - Light Mode */
+    :root {
+      --bg-color-light: #e6f0fa;
+      --card-bg-light: #ffffff;
+      --text-color-light: #1a202c;
+      --count-color-light: #4c51bf;
+
+      --button-primary-bg-light: linear-gradient(135deg, #4299e1, #3182ce);
+      --button-primary-shadow-light: 0 8px 20px rgba(66, 153, 225, 0.4);
+      --button-secondary-bg-light: linear-gradient(135deg, #a0aec0, #718096);
+      --button-secondary-shadow-light: 0 8px 20px rgba(160, 174, 192, 0.4);
+      --button-danger-bg-light: linear-gradient(135deg, #fc8181, #e53e3e);
+      --button-danger-shadow-light: 0 8px 20px rgba(252, 129, 129, 0.4);
+      --button-text-color: #ffffff;
+
+      --toggle-bg-light: #e2e8f0;
+      --toggle-handle-light: #ffffff;
+      --toggle-border-light: #a0aec0;
+
+      --header-bg-light: #dbeafe;
+      --header-text-light: #2b6cb0;
+      --header-shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
+      --header-text-shadow-light: 0 5px 10px rgba(0, 0, 0, 0.25); /* ADJUSTED: More pronounced shallow text shadow */
+    }
+
+    /* Dark Mode variables */
+    body.dark-mode {
+      --bg-color-dark: #1a202c;
+      --card-bg-dark: #2d3748;
+      --text-color-dark: #e2e8f0;
+      --count-color-dark: #a78bfa;
+      --button-primary-bg-dark: linear-gradient(135deg, #7c3aed, #6d28d9);
+      --button-primary-shadow-dark: 0 8px 20px rgba(124, 58, 237, 0.5);
+      --button-secondary-bg-dark: linear-gradient(135deg, #475569, #334155);
+      --button-secondary-shadow-dark: 0 8px 20px rgba(71, 85, 105, 0.5);
+      --button-danger-bg-dark: linear-gradient(135deg, #dc2626, #991b1b);
+      --button-danger-shadow-dark: 0 8px 20px rgba(220, 38, 38, 0.5);
+      --toggle-bg-dark: #4a5568;
+      --toggle-handle-dark: #ffffff;
+      --toggle-border-dark: #64748b;
+      --header-bg-dark: #1f2937;
+      --header-text-dark: #f3f4f6;
+      --header-shadow-dark: 0 4px 15px rgba(0, 0, 0, 0.6);
+      --header-text-shadow-dark: 0 5px 10px rgba(0, 0, 0, 0.6); /* ADJUSTED: More pronounced shallow text shadow for dark mode */
+    }
+
+    /* Base styles with smooth transitions */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-color-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: var(--text-color-light);
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+    body.dark-mode {
+      background: var(--bg-color-dark);
+      color: var(--text-color-dark);
+    }
+
+    /* Container styling */
+    .container {
+      background: var(--card-bg-light);
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 400px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.5s ease, box-shadow 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    body.dark-mode .container {
+      background: var(--card-bg-dark);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Decorative background elements for the container */
+    .container::before,
+    .container::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.1;
+        filter: blur(50px);
+        z-index: 0;
+        transition: background 0.5s ease;
+    }
+    .container::before {
+        width: 120px; height: 120px;
+        background: var(--count-color-light);
+        top: -30px; left: -30px;
+    }
+    .container::after {
+        width: 150px; height: 150px;
+        background: var(--button-primary-bg-light);
+        bottom: -40px; right: -40px;
+    }
+    body.dark-mode .container::before {
+        background: var(--count-color-dark);
+    }
+    body.dark-mode .container::after {
+        background: var(--button-primary-bg-dark);
+    }
+
+    /* Header Container for the topic */
+    .header-container {
+        width: calc(100% + 60px); /* Extend to cover padding of parent */
+        margin: -30px -30px 20px -30px;
+        padding: 30px 30px; /* ADJUSTED: Increased padding for larger text */
+        background: var(--header-bg-light);
+        border-top-left-radius: 24px;
+        border-top-right-radius: 24px;
+        box-shadow: var(--header-shadow-light);
+        transition: background 0.5s ease, box-shadow 0.5s ease;
+        z-index: 1;
+    }
+    body.dark-mode .header-container {
+        background: var(--header-bg-dark);
+        box-shadow: var(--header-shadow-dark);
+    }
+
+    /* Heading styling (Dynamic Counter text) */
+    h1 {
+      margin-bottom: 0;
+      font-size: 124px; /* ADJUSTED: Larger heading font size */
+      font-weight: 900; /* ADJUSTED: Set to 900 (Black) as 1200 is not standard for Inter font */
+      color: var(--header-text-light);
+      text-shadow: var(--header-text-shadow-light); /* Uses the adjusted shallow shadow */
+      letter-spacing: -0.02em;
+      line-height: 1; /* ADJUSTED: Tighter line-height for massive text */
+      transition: color 0.5s ease, text-shadow 0.5s ease;
+    }
+    body.dark-mode h1 {
+      color: var(--header-text-dark);
+      text-shadow: var(--header-text-shadow-dark);
+    }
+
+    /* Count display styling and animation */
+    .count {
+      font-size: 100px;
+      font-weight: 900;
+      margin: 30px 0;
+      color: var(--count-color-light);
+      transition: color 0.5s ease, transform 0.1s ease-out;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      line-height: 1;
+    }
+    body.dark-mode .count {
+      color: var(--count-color-dark);
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Keyframe for count animation */
+    @keyframes count-pop {
+        0% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.05); opacity: 0.9; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+    .count.animated {
+        animation: count-pop 0.2s ease-out;
+    }
+
+
+    /* Buttons container */
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    /* Button base styles */
+    .buttons button {
+      padding: 16px 32px;
+      border: none;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--button-text-color);
+      position: relative;
+      overflow: hidden;
+      transform: translateY(0);
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+      flex-grow: 1;
+      max-width: 160px;
+      box-shadow: var(--button-primary-shadow-light);
+    }
+
+    /* Specific button styles (light mode) */
+    #increment { background: var(--button-primary-bg-light); box-shadow: var(--button-primary-shadow-light); }
+    #decrement { background: var(--button-secondary-bg-light); box-shadow: var(--button-secondary-shadow-light); }
+    #reset { background: var(--button-danger-bg-light); box-shadow: var(--button-danger-shadow-light); }
+
+    /* Specific button styles (dark mode) */
+    body.dark-mode #increment { background: var(--button-primary-bg-dark); box-shadow: var(--button-primary-shadow-dark); }
+    body.dark-mode #decrement { background: var(--button-secondary-bg-dark); box-shadow: var(--button-secondary-shadow-dark); }
+    body.dark-mode #reset { background: var(--button-danger-bg-dark); box-shadow: var(--button-danger-shadow-dark); }
+
+    /* Button hover effects (lift and shadow change) */
+    .buttons button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+    }
+    body.dark-mode .buttons button:hover {
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Button active (click) effect */
+    .buttons button:active {
+      transform: translateY(2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+    body.dark-mode .buttons button:active {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Disabled button styling */
+    .buttons button:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transform: translateY(0);
+      opacity: 0.7;
+    }
+    body.dark-mode .buttons button:disabled {
+        background: #555555;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Ripple effect for buttons */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      animation: ripple-animation 0.6s linear forwards;
+      transform: scale(0);
+      pointer-events: none;
+    }
+    @keyframes ripple-animation {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* Mode toggle switch - positioned fixed to viewport */
+    .mode-toggle-wrapper {
+      position: fixed;
+      top: 25px;
+      right: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 1000;
+      background: var(--card-bg-light);
+      padding: 10px 15px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: background 0.5s ease, box-shadow 0.5s ease;
+    }
+    body.dark-mode .mode-toggle-wrapper {
+        background: var(--card-bg-dark);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .theme-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 28px;
+    }
+
+    .theme-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--toggle-bg-light);
+      border: 1px solid var(--toggle-border-light);
+      transition: 0.4s;
+      border-radius: 28px;
+    }
+    body.dark-mode .slider {
+        background-color: var(--toggle-bg-dark);
+        border-color: var(--toggle-border-dark);
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 3px;
+      background-color: var(--toggle-handle-light);
+      transition: 0.4s;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    body.dark-mode .slider:before {
+        background-color: var(--toggle-handle-dark);
+    }
+
+    input:checked + .slider {
+      background-color: var(--toggle-bg-dark);
+      border-color: var(--toggle-border-dark);
+    }
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      .container {
+        width: 95%;
+        padding: 20px;
+        border-radius: 16px;
+      }
+      .header-container {
+        width: calc(100% + 40px);
+        margin: -20px -20px 15px -20px;
+        padding: 15px 20px;
+      }
+      h1 {
+        font-size: 60px; /* ADJUSTED: Responsive font size for h1 on smaller screens */
+        line-height: 1.1; /* Ensure line-height is good for smaller size too */
+      }
+      .count {
+        font-size: 80px;
+        margin: 20px 0;
+      }
+      .buttons button {
+        width: 100%;
+        max-width: none;
+        margin: 8px 0;
+        padding: 14px 24px;
+        font-size: 16px;
+      }
+      .mode-toggle-wrapper {
+        top: 15px;
+        right: 15px;
+        padding: 8px 12px;
+      }
+    }

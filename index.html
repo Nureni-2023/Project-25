@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Advanced Stylish Counter</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Mode toggle switch - positioned fixed to viewport -->
+  <div class="mode-toggle-wrapper">
+    <span class="text-sm font-semibold text-gray-600 dark:text-gray-300 transition-colors duration-500">Light</span>
+    <label class="theme-switch">
+      <input type="checkbox" id="themeToggle">
+      <span class="slider"></span>
+    </label>
+    <span class="text-sm font-semibold text-gray-600 dark:text-gray-300 transition-colors duration-500">Dark</span>
+  </div>
+
+  <div class="container">
+    <!-- Removed additional decorative background circles -->
+
+    <div class="header-container">
+        <h1>Dynamic Counter</h1>
+    </div>
+
+    <div class="count" id="count">0</div>
+    <div class="buttons">
+      <button id="decrement">Decrement</button>
+      <button id="reset">Reset</button>
+      <button id="increment">Increment</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
